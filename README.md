@@ -1,7 +1,9 @@
-MemberPress Are You a Human Add-On
-==================================
+MemberPress: Are You a Human
+============================
 
-Enforces an "Are You a Human" game on each registration page. This does the same thing as a Captcha but much less annoying.
+This is an add-on for MemberPress that enforces an "Are You a Human" game on each registration page.
+
+Are You a Human does the same thing as a Captcha but much less annoying.
 
 Here are the steps to get working with MemberPress:
 
