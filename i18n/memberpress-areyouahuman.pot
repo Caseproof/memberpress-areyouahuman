@@ -1,0 +1,149 @@
+# Copyright (C) 2014 MemberPress Are You A Human
+# This file is distributed under the same license as the MemberPress Are You A Human package.
+msgid ""
+msgstr ""
+"Project-Id-Version: MemberPress Are You A Human 1.0.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/memberpress-areyouahuman\n"
+"POT-Creation-Date: 2014-05-06 16:04:32+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+
+#: MpayahUpdateController.php:160
+msgid "Membership"
+msgstr ""
+
+#: MpayahUpdateController.php:161
+msgid "Membership Software"
+msgstr ""
+
+#: MpayahUpdateController.php:162
+msgid "Members"
+msgstr ""
+
+#: MpayahUpdateController.php:163
+msgid "Payment"
+msgstr ""
+
+#: MpayahUpdateController.php:164
+msgid "Protection"
+msgstr ""
+
+#: MpayahUpdateController.php:165
+msgid "Rule"
+msgstr ""
+
+#: MpayahUpdateController.php:166
+msgid "Lock"
+msgstr ""
+
+#: MpayahUpdateController.php:167
+msgid "Access"
+msgstr ""
+
+#: MpayahUpdateController.php:168
+msgid "Community"
+msgstr ""
+
+#: MpayahUpdateController.php:169
+msgid "Admin"
+msgstr ""
+
+#: MpayahUpdateController.php:170
+msgid "Pages"
+msgstr ""
+
+#: MpayahUpdateController.php:171
+msgid "Posts"
+msgstr ""
+
+#: MpayahUpdateController.php:172
+msgid "Plugin"
+msgstr ""
+
+#: MpayahUpdateController.php:173
+msgid ""
+"Helps you place an \"Are You a Human\" game (captcha alternative) on your "
+"MemberPress registration forms."
+msgstr ""
+
+#: MpayahUpdateController.php:174
+msgid ""
+"You can access in-depth information about MemberPress at %1$sthe MemberPress "
+"User Manual%2$s."
+msgstr ""
+
+#: MpayahUpdateController.php:174
+msgid "No Additional information right now"
+msgstr ""
+
+#: MpayahUpdateController.php:203
+msgid "You had an HTTP error connecting to Caseproof's Mothership API"
+msgstr ""
+
+#: MpayahUpdateController.php:214
+msgid "Your License Key was invalid"
+msgstr ""
+
+#: memberpress-areyouahuman.php:56
+msgid "Are You A Human (Captcha Alternative)"
+msgstr ""
+
+#: memberpress-areyouahuman.php:58
+msgid "Are You A Human"
+msgstr ""
+
+#: memberpress-areyouahuman.php:59
+msgid ""
+"Go to %1$sAreYouAHuman.com%2$s and register for a free account to get your "
+"publisher and scoring keys"
+msgstr ""
+
+#: memberpress-areyouahuman.php:65
+msgid "Publisher Key:"
+msgstr ""
+
+#: memberpress-areyouahuman.php:73
+msgid "Scoring Key:"
+msgstr ""
+
+#: memberpress-areyouahuman.php:101
+msgid "Sorry, but we were not able to verify you as human. Please try again."
+msgstr ""
+
+#: script/i18n/pomo/sample/app.php:56
+msgid "Welcome %s!"
+msgstr ""
+
+#: script/i18n/pomo/sample/app.php:60
+msgid "A string with low priority!"
+msgstr ""
+
+#: script/i18n/pomo/sample/app.php:62
+msgid "Bye\n"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "MemberPress Are You A Human"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://memberpress.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Puts an \"Are You A Human\" game on each registration page to prevent spam "
+"signups"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Caseproof, LLC"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://caseproof.com"
+msgstr ""
