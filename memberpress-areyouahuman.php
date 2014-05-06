@@ -3,11 +3,11 @@
 Plugin Name: MemberPress Are You A Human
 Plugin URI: http://memberpress.com
 Description: Puts an "Are You A Human" game on each registration page to prevent spam signups
-Version: 1.0.2
+Version: 1.0.0
 Author: Caseproof, LLC
 Author URI: http://caseproof.com
 Text Domain: memberpress
-Copyright: 2004-2013, Caseproof, LLC
+Copyright: 2004-2014, Caseproof, LLC
 */
 
 if(!defined('ABSPATH')) {die('You are not allowed to call this page directly.');}

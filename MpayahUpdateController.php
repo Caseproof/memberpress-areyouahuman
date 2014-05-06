@@ -8,9 +8,6 @@ class MpayahUpdateController {
   }
 
   public static function queue_update($transient) {
-    if(empty($transient->checked))
-      return $transient;
-
     $mepr_options = MeprOptions::fetch();
 
     if(empty($mepr_options->mothership_license))
