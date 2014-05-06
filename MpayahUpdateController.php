@@ -12,7 +12,7 @@ class MpayahUpdateController {
       return $transient;
 
     $mepr_options = MeprOptions::fetch();
-    
+
     if(empty($mepr_options->mothership_license))
     {
       // Just here to query for the current version
@@ -55,7 +55,7 @@ class MpayahUpdateController {
         {
           if(isset($transient->response[MPAYAH_PLUGIN_SLUG]))
             unset($transient->response[MPAYAH_PLUGIN_SLUG]);
-          
+
           return $transient;
         }
       }
