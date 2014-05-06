@@ -14,6 +14,31 @@ if(!defined('ABSPATH')) {die('You are not allowed to call this page directly.');
 
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 if( is_plugin_active('memberpress/memberpress.php') ) {
+
+  /**
+   * Returns current plugin version.
+   *
+   * @return string Plugin version
+   */
+  function mpayah_plugin_info($field) {
+    static $plugin_folder, $plugin_file;
+
+    if( !isset($plugin_folder) or !isset($plugin_file) ) {
+      if( ! function_exists( 'get_plugins' ) )
+        require_once( ABSPATH . '/wp-admin/includes/plugin.php' );
+
+      $plugin_folder = get_plugins( '/' . plugin_basename( dirname( __FILE__ ) ) );
+      $plugin_file = basename( ( __FILE__ ) );
+    }
+
+    if(isset($plugin_folder[$plugin_file][$field]))
+      return $plugin_folder[$plugin_file][$field];
+
+    return '';
+  }
+
+  // Plugin Information from the plugin header declaration
+  define('MPAYAH_VERSION', mpayah_plugin_info('Version'));
   define('MPAYAH_PLUGIN_SLUG', plugin_basename(__FILE__));
   define('MPAYAH_PLUGIN_NAME', dirname(MPAYAH_PLUGIN_SLUG));
   define('MPAYAH_PATH', WP_PLUGIN_DIR.'/'.MPAYAH_PLUGIN_NAME);

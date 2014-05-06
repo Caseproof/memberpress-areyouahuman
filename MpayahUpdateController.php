@@ -7,60 +7,69 @@ class MpayahUpdateController {
     add_filter('plugins_api', 'MpayahUpdateController::plugin_info', 937801, 3);
   }
 
-  public static function queue_update($transient) {
+  public static function queue_update($transient, $force=false) {
     $mepr_options = MeprOptions::fetch();
 
-    if(empty($mepr_options->mothership_license))
+    if( $force or ( false === ( $update_info = get_site_transient('mpayah_update_info') ) ) )
     {
-      // Just here to query for the current version
-      $args = array();
-      if( defined( "MEMBERPRESS_EDGE" ) and MEMBERPRESS_EDGE )
-        $args['edge'] = 'true';
-
-      $version_info = self::send_mothership_request( "/versions/latest/".MPAYAH_EDITION, $args );
-      $curr_version = $version_info['version'];
-      $download_url = '';
-    }
-    else
-    {
-      try
+      if(empty($mepr_options->mothership_license))
       {
-        $domain = urlencode(MeprUtils::site_domain());
-        $args = compact('domain');
-
-        if( defined( "MEMBERPRESS_EDGE" ) and MEMBERPRESS_EDGE )
+        // Just here to query for the current version
+        $args = array();
+        if( $mepr_options->edge_updates or ( defined( "MEMBERPRESS_EDGE" ) and MEMBERPRESS_EDGE ) )
           $args['edge'] = 'true';
 
-        $license_info = self::send_mothership_request("/versions/info/".MPAYAH_EDITION."/{$mepr_options->mothership_license}", $args);
-        $curr_version = $license_info['version'];
-        $download_url = $license_info['url'];
+        $version_info = self::send_mothership_request( "/versions/latest/".MPAYAH_EDITION, $args );
+        $curr_version = $version_info['version'];
+        $download_url = '';
       }
-      catch(Exception $e)
+      else
       {
-        try
-        {
-          // Just here to query for the current version
-          $args = array();
-          if( defined( "MEMBERPRESS_EDGE" ) and MEMBERPRESS_EDGE )
+        try {
+          $domain = urlencode(MeprUtils::site_domain());
+          $args = compact('domain');
+
+          if( $mepr_options->edge_updates or ( defined( "MEMBERPRESS_EDGE" ) and MEMBERPRESS_EDGE ) )
             $args['edge'] = 'true';
 
-          $version_info = self::send_mothership_request("/versions/latest/".MPAYAH_EDITION, $args);
-          $curr_version = $version_info['version'];
-          $download_url = '';
+          $license_info = self::send_mothership_request("/versions/info/".MPAYAH_EDITION."/{$mepr_options->mothership_license}", $args);
+          $curr_version = $license_info['version'];
+          $download_url = $license_info['url'];
+          set_site_transient( 'mpayah_license_info',
+                              $license_info,
+                              MeprUtils::hours(12) );
         }
         catch(Exception $e)
         {
-          if(isset($transient->response[MPAYAH_PLUGIN_SLUG]))
-            unset($transient->response[MPAYAH_PLUGIN_SLUG]);
+          try
+          {
+            // Just here to query for the current version
+            $args = array();
+            if( $mepr_options->edge_updates or ( defined( "MEMBERPRESS_EDGE" ) and MEMBERPRESS_EDGE ) )
+              $args['edge'] = 'true';
 
-          return $transient;
+            $version_info = self::send_mothership_request("/versions/latest/".MPAYAH_EDITION, $args);
+            $curr_version = $version_info['version'];
+            $download_url = '';
+          }
+          catch(Exception $e)
+          {
+            if(isset($transient->response[MPAYAH_PLUGIN_SLUG]))
+              unset($transient->response[MPAYAH_PLUGIN_SLUG]);
+
+            return $transient;
+          }
         }
       }
+
+      set_site_transient( 'mpayah_update_info',
+                          compact( 'curr_version', 'download_url' ),
+                          MeprUtils::hours(12) );
     }
+    else
+      extract( $update_info );
 
-    $installed_version = $transient->checked[MPAYAH_PLUGIN_SLUG];
-
-    if(isset($curr_version) and version_compare($curr_version, $installed_version, '>'))
+    if(isset($curr_version) and version_compare($curr_version, MPAYAH_VERSION, '>'))
     {
       $transient->response[MPAYAH_PLUGIN_SLUG] = (object)array(
         'id'          => $curr_version,
@@ -75,23 +84,23 @@ class MpayahUpdateController {
     
     return $transient;
   }
-  
+
   public static function plugin_info($false, $action, $args) {
     global $wp_version;
     
     if(!isset($action) or $action != 'plugin_information')
       return false;
-    
+
     if(isset( $args->slug) and !preg_match("#.*".$args->slug.".*#", MPAYAH_PLUGIN_SLUG))
       return false;
-    
+
     $mepr_options = MeprOptions::fetch();
-    
+
     if(empty($mepr_options->mothership_license))
     {
       // Just here to query for the current version
       $args = array();
-      if( defined( "MEMBERPRESS_EDGE" ) and MEMBERPRESS_EDGE )
+      if( $mepr_options->edge_updates or ( defined( "MEMBERPRESS_EDGE" ) and MEMBERPRESS_EDGE ) )
         $args['edge'] = 'true';
 
       $version_info = self::send_mothership_request("/versions/latest/".MPAYAH_EDITION, $args);
@@ -106,7 +115,7 @@ class MpayahUpdateController {
         $domain = urlencode(MeprUtils::site_domain());
         $args = compact('domain');
 
-        if( defined( "MEMBERPRESS_EDGE" ) and MEMBERPRESS_EDGE )
+        if( $mepr_options->edge_updates or ( defined( "MEMBERPRESS_EDGE" ) and MEMBERPRESS_EDGE ) )
           $args['edge'] = 'true';
 
         $license_info = self::send_mothership_request("/versions/info/{$mepr_options->mothership_license}", $args);
@@ -119,7 +128,7 @@ class MpayahUpdateController {
         try
         {
           $args = array();
-          if( defined( "MEMBERPRESS_EDGE" ) and MEMBERPRESS_EDGE )
+          if( $mepr_options->edge_updates or ( defined( "MEMBERPRESS_EDGE" ) and MEMBERPRESS_EDGE ) )
             $args['edge'] = 'true';
 
           // Just here to query for the current version
@@ -137,7 +146,7 @@ class MpayahUpdateController {
         }
       }
     }
-    
+
     $pinfo = (object)array( "slug" => MPAYAH_PLUGIN_SLUG,
                             "name" => "MemberPress Are You A Human",
                             "author" => '<a href="http://blairwilliams.com">Caseproof, LLC</a>',
@@ -173,7 +182,7 @@ class MpayahUpdateController {
 
     return $pinfo;
   }
-  
+
   public static function send_mothership_request( $endpoint,
                                                   $args=array(),
                                                   $method='get',
@@ -217,7 +226,7 @@ class MpayahUpdateController {
   public static function manually_queue_update()
   {
     $transient = get_site_transient("update_plugins");
-    set_site_transient("update_plugins", self::queue_update($transient));
+    set_site_transient("update_plugins", self::queue_update($transient, true));
   }
 } //End class
 
