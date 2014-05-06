@@ -14,6 +14,12 @@ if(!defined('ABSPATH')) {die('You are not allowed to call this page directly.');
 
 include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
 if( is_plugin_active('memberpress/memberpress.php') ) {
+  define('MPAYAH_PLUGIN_SLUG', plugin_basename(__FILE__));
+  define('MPAYAH_PLUGIN_NAME', dirname(MPAYAH_PLUGIN_SLUG));
+  define('MPAYAH_PATH', WP_PLUGIN_DIR.'/'.MPAYAH_PLUGIN_NAME);
+  define('MPAYAH_URL', plugins_url('/'.MPAYAH_PLUGIN_NAME));
+  define('MPAYAH_EDITION', 'memberpress-areyouahuman');
+
   class MeprAreYouAHuman {
     public $ayah;
     public $key_strs;
@@ -47,16 +53,16 @@ if( is_plugin_active('memberpress/memberpress.php') ) {
 
     public function display_options() {
       ?>
-      <h3><?php _e('Are You A Human (Captcha Alternative)', 'memberpress'); ?>
+      <h3><?php _e('Are You A Human (Captcha Alternative)', 'memberpress-areyouahuman'); ?>
           <?php MeprAppHelper::info_tooltip( 'mepr-areyouahuman',
-                                             __('Are You A Human', 'memberpress'),
-                                             sprintf(__('Go to %1$sAreYouAHuman.com%2$s and register for a free account to get your publisher and scoring keys', 'memberpress'), '<a href="http://areyouahuman.com">', '</a>') ); ?>
+                                             __('Are You A Human', 'memberpress-areyouahuman'),
+                                             sprintf(__('Go to %1$sAreYouAHuman.com%2$s and register for a free account to get your publisher and scoring keys', 'memberpress-areyouahuman'), '<a href="http://areyouahuman.com">', '</a>') ); ?>
       </h3>
       <div class="mepr-options-pane">
         <table>
           <tr>
             <td>
-              <label for="<?php echo $this->key_strs->publisher; ?>"><?php _e('Publisher Key:', 'memberpress'); ?></label>
+              <label for="<?php echo $this->key_strs->publisher; ?>"><?php _e('Publisher Key:', 'memberpress-areyouahuman'); ?></label>
             </td>
             <td>
               <input type="text" id="<?php echo $this->key_strs->publisher; ?>" name="<?php echo $this->key_strs->publisher; ?>" class="regular-text" value="<?php echo stripslashes($this->keys->publisher); ?>" />
@@ -64,7 +70,7 @@ if( is_plugin_active('memberpress/memberpress.php') ) {
           </tr>
           <tr>
             <td>
-              <label for="<?php echo $this->key_strs->scoring; ?>"><?php _e('Scoring Key:', 'memberpress'); ?></label>
+              <label for="<?php echo $this->key_strs->scoring; ?>"><?php _e('Scoring Key:', 'memberpress-areyouahuman'); ?></label>
             </td>
             <td>
               <input type="text" id="<?php echo $this->key_strs->scoring; ?>" name="<?php echo $this->key_strs->scoring; ?>" class="regular-text" value="<?php echo stripslashes($this->keys->scoring); ?>" />
