@@ -73,7 +73,7 @@ class MpayahUpdateController {
     {
       $transient->response[MPAYAH_PLUGIN_SLUG] = (object)array(
         'id'          => $curr_version,
-        'slug'        => MPAYAH_PLUGIN_SLUG,
+        'slug'        => 'memberpress-areyouahuman',
         'new_version' => $curr_version,
         'url'         => 'http://memberpress.com',
         'package'     => $download_url
