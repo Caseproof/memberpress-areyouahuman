@@ -85,14 +85,14 @@ class MpayahUpdateController {
     return $transient;
   }
 
-  public static function plugin_info($false, $action, $args) {
+  public static function plugin_info($api, $action, $args) {
     global $wp_version;
     
     if(!isset($action) or $action != 'plugin_information')
-      return false;
+      return $api;
 
     if(isset( $args->slug) and !preg_match("#.*".$args->slug.".*#", MPAYAH_PLUGIN_SLUG))
-      return false;
+      return $api;
 
     $mepr_options = MeprOptions::fetch();
 
@@ -225,8 +225,8 @@ class MpayahUpdateController {
 
   public static function manually_queue_update()
   {
-    $transient = get_site_transient("update_plugins");
-    set_site_transient("update_plugins", self::queue_update($transient, true));
+    $transient = get_site_transient('update_plugins');
+    set_site_transient('update_plugins', self::queue_update($transient, true));
   }
 } //End class
 
