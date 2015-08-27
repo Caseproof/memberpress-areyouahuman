@@ -3,7 +3,7 @@
 Plugin Name: MemberPress Are You A Human
 Plugin URI: http://memberpress.com
 Description: Puts an "Are You A Human" game on each registration page to prevent spam signups
-Version: 1.0.10
+Version: 1.0.11
 Author: Caseproof, LLC
 Author URI: http://caseproof.com
 Text Domain: memberpress
@@ -133,6 +133,6 @@ if( is_plugin_active('memberpress/memberpress.php') ) {
   new MeprAreYouAHuman();
 
   require_once(MPAYAH_PATH . '/MpayahUpdateController.php');
-  MpayahUpdateController::load_hooks(); 
+  MpayahUpdateController::load_hooks();
 }
 

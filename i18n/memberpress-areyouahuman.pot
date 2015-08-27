@@ -1,14 +1,15 @@
-# Copyright (C) 2014 MemberPress Are You A Human
+# Copyright (C) 2015 MemberPress Are You A Human
 # This file is distributed under the same license as the MemberPress Are You A Human package.
 msgid ""
 msgstr ""
-"Project-Id-Version: MemberPress Are You A Human 1.0.10\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/memberpress-areyouahuman\n"
-"POT-Creation-Date: 2014-10-28 22:15:14+00:00\n"
+"Project-Id-Version: MemberPress Are You A Human 1.0.11\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/memberpress-"
+"areyouahuman\n"
+"POT-Creation-Date: 2015-08-27 18:58:51+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2014-MO-DA HO:MI+ZONE\n"
+"PO-Revision-Date: 2015-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 

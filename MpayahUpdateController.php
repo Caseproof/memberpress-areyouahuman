@@ -81,13 +81,13 @@ class MpayahUpdateController {
     }
     else
       unset( $transient->response[MPAYAH_PLUGIN_SLUG] );
-    
+
     return $transient;
   }
 
   public static function plugin_info($api, $action, $args) {
     global $wp_version;
-    
+
     if(!isset($action) or $action != 'plugin_information')
       return $api;
 
@@ -141,7 +141,7 @@ class MpayahUpdateController {
         {
           if(isset($transient->response[MEPR_PLUGIN_SLUG]))
             unset($transient->response[MEPR_PLUGIN_SLUG]);
-          
+
           return $transient;
         }
       }

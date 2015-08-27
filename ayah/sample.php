@@ -2,21 +2,21 @@
 <?php
 //******************************************************************************
 /*
-	Name:		sample.php
+  Name:    sample.php
 
-	Purpose:	Provide an example of how to integrate an AYAH PlayThru on PHP web form.
+  Purpose:  Provide an example of how to integrate an AYAH PlayThru on PHP web form.
 
-	Requirements:
-			- your web server uses PHP5 (or higher).
-			- all the AYAH PHP library files are in the same directory as this file.
-			- the ayah_config.php contains a valid publisher key and scoring key.
-			- you have read the installation instructions page at:
-				http://portal.areyouahuman.com/installation/php
+  Requirements:
+      - your web server uses PHP5 (or higher).
+      - all the AYAH PHP library files are in the same directory as this file.
+      - the ayah_config.php contains a valid publisher key and scoring key.
+      - you have read the installation instructions page at:
+        http://portal.areyouahuman.com/installation/php
 
-	Notes:		- if the Game Style for your PlayThru is set to "Lightbox", the
-			  PlayThru will not display until after you click the submit button.
-			  To change this setting, use the dashboard at:
-				http://portal.areyouahuman.com/dashboard.php
+  Notes:    - if the Game Style for your PlayThru is set to "Lightbox", the
+        PlayThru will not display until after you click the submit button.
+        To change this setting, use the dashboard at:
+        http://portal.areyouahuman.com/dashboard.php
 */
 //******************************************************************************
 
@@ -40,7 +40,7 @@ if (array_key_exists('my_submit_button_name', $_POST))
         }
         else
         {
-        		// This happens if the user does not pass the game.
+            // This happens if the user does not pass the game.
                 echo "Sorry, but we were not able to verify you as human. Please try again.";
         }
 }
@@ -58,7 +58,7 @@ In this example, the form submits to itself. -->
             // directly before your 'Submit' button.
             echo $ayah->getPublisherHTML();
         ?>
-        
+
         <!-- Make sure the name of your 'Submit' matches the name you used on line 9. -->
         <input type="Submit" name="my_submit_button_name" value=" Submit ">
 </form>
