@@ -1,4 +1,4 @@
-MemberPress: Are You a Human
+MemberPress: Are You a Human (DEPRECATED - NO LONGER SUPPORTED)
 ============================
 
 This is an add-on for MemberPress that enforces an "Are You a Human" game on each registration page.
